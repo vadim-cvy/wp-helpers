@@ -1,9 +1,9 @@
 <?php
 
-namespace JT\helpers\inc\shortcodes;
+namespace Cvy\helpers\inc\shortcodes;
 
-use \JT\helpers\inc\WP_Hooks;
-use \JT\helpers\inc\design_pattern\tSingleton;
+use \Cvy\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\design_pattern\tSingleton;
 
 abstract class Shortcode
 {

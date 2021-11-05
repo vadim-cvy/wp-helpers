@@ -1,10 +1,10 @@
 <?php
 
-namespace JT\helpers\inc\package;
+namespace Cvy\helpers\inc\package;
 
 use \Exception;
 
-use \JT\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\WP_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

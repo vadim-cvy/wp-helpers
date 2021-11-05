@@ -1,20 +1,20 @@
 <?php
 
-namespace JT\helpers;
+namespace Cvy\helpers;
 
-use \JT\helpers\inc\Plugins;
-use \JT\helpers\inc\package\Package_Assets_Manager;
+use \Cvy\helpers\inc\Plugins;
+use \Cvy\helpers\inc\package\Package_Assets_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Helpers package main file.
  */
-class Helpers extends \JT\helpers\inc\package\Package
+class Helpers extends \Cvy\helpers\inc\package\Package
 {
     public function init_includes() : void
     {
-        \JT\helpers\inc\dashboard\Dashboard::get_instance();
+        \Cvy\helpers\inc\dashboard\Dashboard::get_instance();
     }
 
     protected function enqueue_assets( Package_Assets_Manager $assets ) : void
@@ -62,7 +62,7 @@ class Helpers extends \JT\helpers\inc\package\Package
      */
     public function get_version() : string
     {
-        return \JT\Plugin::get_instance()->get_version();
+        return \Cvy\Plugin::get_instance()->get_version();
     }
 
     /**

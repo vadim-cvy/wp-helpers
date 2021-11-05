@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\screens;
+namespace Cvy\helpers\inc\screens;
 
 /**
  * Represents current screen (page).

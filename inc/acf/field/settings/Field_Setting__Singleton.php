@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\acf\field\settings;
+namespace Cvy\helpers\inc\acf\field\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 abstract class Field_Setting__Singleton
 {
-    use \JT\helpers\inc\design_pattern\tSingleton;
+    use \Cvy\helpers\inc\design_pattern\tSingleton;
 
     protected function __construct()
     {
@@ -48,7 +48,7 @@ abstract class Field_Setting__Singleton
         {
             $action_name = 'acf/render_field_settings/type=' . $field_type;
 
-            \JT\helpers\inc\WP_Hooks::add_action_ensure( $action_name, [ $this, '_print' ], 1 );
+            \Cvy\helpers\inc\WP_Hooks::add_action_ensure( $action_name, [ $this, '_print' ], 1 );
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\dashboard;
+namespace Cvy\helpers\inc\dashboard;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class Dashboard
 {
-    use \JT\helpers\inc\design_pattern\tSingleton;
+    use \Cvy\helpers\inc\design_pattern\tSingleton;
 
     /**
      * Dashboard notices which were added via this class.
@@ -22,7 +22,7 @@ class Dashboard
 
     protected function __construct()
     {
-        \JT\helpers\inc\WP_Hooks::add_action_ensure( 'admin_notices', [ $this, '_print_notices' ] );
+        \Cvy\helpers\inc\WP_Hooks::add_action_ensure( 'admin_notices', [ $this, '_print_notices' ] );
     }
 
     /**
@@ -63,7 +63,7 @@ class Dashboard
     public function _print_notices() : void
     {
         $templates_dir_path =
-            \JT\helpers\Helpers::get_instance()->get_templates_dir();
+            \Cvy\helpers\Helpers::get_instance()->get_templates_dir();
 
         require_once $templates_dir_path . 'dashboard-notices.php';
     }

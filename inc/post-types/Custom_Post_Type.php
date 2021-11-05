@@ -1,11 +1,11 @@
 <?php
 
-namespace JT\helpers\inc\post_types;
+namespace Cvy\helpers\inc\post_types;
 
 use \Exception;
 use \WP_Query;
 
-use \JT\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\WP_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace JT\helpers\inc\acf;
+namespace Cvy\helpers\inc\acf;
 
-use \JT\helpers\inc\Plugins;
+use \Cvy\helpers\inc\Plugins;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

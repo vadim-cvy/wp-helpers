@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\dashboard\tables;
+namespace Cvy\helpers\inc\dashboard\tables;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

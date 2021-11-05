@@ -1,9 +1,9 @@
 <?php
 
-namespace JT\helpers\inc\package;
+namespace Cvy\helpers\inc\package;
 
-use \JT\helpers\inc\WP_Hooks;
-use \JT\helpers\inc\design_pattern\tSingleton;
+use \Cvy\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\design_pattern\tSingleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * How to use:
  *
- * My_Awesome_Package extends \JT\helpers\inc\package\Package
+ * My_Awesome_Package extends \Cvy\helpers\inc\package\Package
  * {
  *      // Your code goes here
  * }
@@ -202,7 +202,7 @@ abstract class Package
      */
     public function add_dashboard_error( string $error_message ) : void
     {
-        \JT\helpers\inc\dashboard\Dashboard::get_instance()->add_error( $error_message );
+        \Cvy\helpers\inc\dashboard\Dashboard::get_instance()->add_error( $error_message );
     }
 
     public function get_db_data_item( string $name = '', $default_value = null )

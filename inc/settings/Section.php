@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\settings;
+namespace Cvy\helpers\inc\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -50,7 +50,7 @@ class Section
         $this->description = $description;
         $this->parent_page = $parent_page;
 
-        \JT\helpers\inc\WP_Hooks::add_action_ensure( 'admin_init', [ $this, '_register' ] );
+        \Cvy\helpers\inc\WP_Hooks::add_action_ensure( 'admin_init', [ $this, '_register' ] );
     }
 
     /**

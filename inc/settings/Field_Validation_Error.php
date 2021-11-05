@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\settings;
+namespace Cvy\helpers\inc\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

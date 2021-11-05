@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\settings;
+namespace Cvy\helpers\inc\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 abstract class Page
 {
-    use \JT\helpers\inc\design_pattern\tSingleton;
+    use \Cvy\helpers\inc\design_pattern\tSingleton;
 
     /**
      * Page sections.
@@ -22,7 +22,7 @@ abstract class Page
     {
         static::set_sections();
 
-        \JT\helpers\inc\WP_Hooks::add_action_ensure( 'admin_menu', [ $this, '_add_to_admin_menu' ] );
+        \Cvy\helpers\inc\WP_Hooks::add_action_ensure( 'admin_menu', [ $this, '_add_to_admin_menu' ] );
     }
 
     /**
@@ -106,7 +106,7 @@ abstract class Page
     public function _render() : void
     {
         $templates_dir_path =
-            \JT\helpers\Helpers::get_instance()->get_templates_dir();
+            \Cvy\helpers\Helpers::get_instance()->get_templates_dir();
 
         require $templates_dir_path . 'settings/page.php';
     }

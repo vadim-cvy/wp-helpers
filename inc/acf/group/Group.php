@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\acf\group;
+namespace Cvy\helpers\inc\acf\group;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

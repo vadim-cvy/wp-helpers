@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\settings;
+namespace Cvy\helpers\inc\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 abstract class Setting
 {
-    use \JT\helpers\inc\design_pattern\tSingleton;
+    use \Cvy\helpers\inc\design_pattern\tSingleton;
 
     /**
      * Reflects if there are any errors during setting fields validation process.
@@ -20,7 +20,7 @@ abstract class Setting
 
     protected function __construct()
     {
-        \JT\helpers\inc\WP_Hooks::add_action_ensure( 'init', [ $this, '_register' ] );
+        \Cvy\helpers\inc\WP_Hooks::add_action_ensure( 'init', [ $this, '_register' ] );
     }
 
     /**

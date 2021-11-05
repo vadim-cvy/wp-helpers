@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\acf\field\settings;
+namespace Cvy\helpers\inc\acf\field\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

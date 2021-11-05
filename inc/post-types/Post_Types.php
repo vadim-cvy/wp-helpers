@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\post_types;
+namespace Cvy\helpers\inc\post_types;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

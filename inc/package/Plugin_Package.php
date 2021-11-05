@@ -1,8 +1,8 @@
 <?php
 
-namespace JT\helpers\inc\package;
+namespace Cvy\helpers\inc\package;
 
-use \JT\helpers\inc\Plugins;
+use \Cvy\helpers\inc\Plugins;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * How to use:
  *
- * My_Awesome_Plugin extends \JT\helpers\inc\package\Plugin_Package
+ * My_Awesome_Plugin extends \Cvy\helpers\inc\package\Plugin_Package
  * {
  *      // Your code goes here
  * }
@@ -71,7 +71,7 @@ abstract class Plugin_Package extends Package
             basename( $this->get_root_dir() ) . '/' .
             basename( $this->get_root_file() );
 
-        return \JT\helpers\inc\Plugins::is_active( $plugin );
+        return \Cvy\helpers\inc\Plugins::is_active( $plugin );
     }
 
     /**

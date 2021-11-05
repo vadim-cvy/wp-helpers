@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$prefix = \JT\helpers\Helpers::get_instance()->get_slug() . '_'; ?>
+$prefix = \Cvy\helpers\Helpers::get_instance()->get_slug() . '_'; ?>
 
 <input
     <?php

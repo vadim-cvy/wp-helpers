@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\taxonomies;
+namespace Cvy\helpers\inc\taxonomies;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

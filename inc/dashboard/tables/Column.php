@@ -1,8 +1,8 @@
 <?php
 
-namespace JT\helpers\inc\dashboard\tables;
+namespace Cvy\helpers\inc\dashboard\tables;
 
-use \JT\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\WP_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

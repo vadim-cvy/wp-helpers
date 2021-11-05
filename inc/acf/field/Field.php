@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\acf\field;
+namespace Cvy\helpers\inc\acf\field;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -139,7 +139,7 @@ class Field
     /**
      * Returns field parent.
      *
-     * @return \JT\helpers\inc\acf\group\Group|Field Field parent (group or field instance).
+     * @return \Cvy\helpers\inc\acf\group\Group|Field Field parent (group or field instance).
      */
     public function get_parent()
     {
@@ -151,7 +151,7 @@ class Field
         }
         catch ( Field_Not_Exist_Error $error )
         {
-            $parent = \JT\helpers\inc\acf\group\Groups::get_by_id( $parent_id );
+            $parent = \Cvy\helpers\inc\acf\group\Groups::get_by_id( $parent_id );
         }
 
         return $parent;
@@ -160,7 +160,7 @@ class Field
     /**
      * Returns all field parents.
      *
-     * @return array<\JT\helpers\inc\acf\group\Group|Field> Field parents.
+     * @return array<\Cvy\helpers\inc\acf\group\Group|Field> Field parents.
      */
     public function get_parents() : array
     {
@@ -187,9 +187,9 @@ class Field
     /**
      * Returns field parent group.
      *
-     * @return \JT\helpers\inc\acf\group\Group Field parent group.
+     * @return \Cvy\helpers\inc\acf\group\Group Field parent group.
      */
-    public function get_group() : \JT\helpers\inc\acf\group\Group
+    public function get_group() : \Cvy\helpers\inc\acf\group\Group
     {
         $parents = $this->get_parents();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace JT\helpers\inc\settings;
+namespace Cvy\helpers\inc\settings;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 abstract class Field__Singleton
 {
-    use \JT\helpers\inc\design_pattern\tSingleton;
+    use \Cvy\helpers\inc\design_pattern\tSingleton;
 
     /**
      * Adds required WP hooks.
@@ -22,7 +22,7 @@ abstract class Field__Singleton
      */
     protected function __construct()
     {
-        \JT\helpers\inc\WP_Hooks::add_action_ensure( 'admin_init', [ $this, '_register' ] );
+        \Cvy\helpers\inc\WP_Hooks::add_action_ensure( 'admin_init', [ $this, '_register' ] );
     }
 
     /**
@@ -282,7 +282,7 @@ abstract class Field__Singleton
     public function _render() : void
     {
         $templates_dir_path =
-            \JT\helpers\Helpers::get_instance()->get_templates_dir();
+            \Cvy\helpers\Helpers::get_instance()->get_templates_dir();
 
         require $templates_dir_path . 'settings/field.php';
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace JT\helpers\inc\taxonomies;
+namespace Cvy\helpers\inc\taxonomies;
 
 use \Exception;
 
-use \JT\helpers\inc\WP_Hooks;
+use \Cvy\helpers\inc\WP_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
