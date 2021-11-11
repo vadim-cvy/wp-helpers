@@ -63,7 +63,7 @@ class Dashboard
     public function _print_notices() : void
     {
         $templates_dir_path =
-            \Cvy\helpers\Helpers::get_instance()->get_templates_dir();
+            \Cvy\helpers\Helpers::get_instance()->get_templates_dir_path();
 
         require_once $templates_dir_path . 'dashboard-notices.php';
     }

@@ -259,9 +259,9 @@ class Package_Assets_Manager
      *
      * @return string
      */
-    protected function get_root_dir() : string
+    protected function get_root_dir_path() : string
     {
-        return $this->package->get_root_dir() . 'assets/build/';
+        return $this->package->get_root_dir_path() . 'assets/build/';
     }
 
     /**
@@ -274,7 +274,7 @@ class Package_Assets_Manager
      */
     protected function get_root_sub_dir( string $sub_dir_relative_path ) : string
     {
-        return $this->get_root_dir() . trailingslashit( $sub_dir_relative_path );
+        return $this->get_root_dir_path() . trailingslashit( $sub_dir_relative_path );
     }
 
     /**

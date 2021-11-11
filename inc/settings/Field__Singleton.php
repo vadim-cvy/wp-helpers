@@ -282,7 +282,7 @@ abstract class Field__Singleton
     public function _render() : void
     {
         $templates_dir_path =
-            \Cvy\helpers\Helpers::get_instance()->get_templates_dir();
+            \Cvy\helpers\Helpers::get_instance()->get_templates_dir_path();
 
         require $templates_dir_path . 'settings/field.php';
     }

@@ -4,6 +4,8 @@ namespace Cvy\helpers\inc\package;
 
 use \Cvy\helpers\inc\WP_Hooks;
 use \Cvy\helpers\inc\design_pattern\tSingleton;
+use \Cvy\helpers\inc\plugins\Plugin_Error;
+use \Cvy\helpers\inc\dashboard\Dashboard;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -18,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * How to use:
  *
- * My_Awesome_Package extends \Cvy\helpers\inc\package\Package
+ * My_Awesome_Package extends Package
  * {
  *      // Your code goes here
  * }
@@ -29,21 +31,19 @@ abstract class Package
 {
     use tSingleton
     {
-        get_instance as tSingleton__get_instance;
+        create_instance as tSingleton__create_instance;
     }
 
-    static function get_instance()
+    /**
+     * Creates an instance of the package.
+     *
+     * @return object Instance of the package.
+     */
+    static function create_instance() : Package
     {
-        static $is_first_call = true;
+        $instance = static::tSingleton__create_instance();
 
-        $instance = static::tSingleton__get_instance();
-
-        if ( $is_first_call )
-        {
-            $instance->run();
-
-            $is_first_call = false;
-        }
+        $instance->run();
 
         return $instance;
     }
@@ -118,14 +118,35 @@ abstract class Package
      *
      * @return boolean True if package is allowed to run false otherwise.
      */
-    abstract protected function can_run() : bool;
+    protected function can_run() : bool
+    {
+        $is_error = false;
+
+        try {
+            foreach ( $this->get_dependable_plugins() as $plugin )
+            {
+                $plugin->validate_is_active();
+            }
+        }
+        catch ( Plugin_Error $error )
+        {
+            $this->add_dashboard_error( $error->getMessage() );
+
+            $is_error = true;
+        }
+
+        return empty( $is_error );
+    }
 
     /**
-     * Package version.
+     * Returns an array of plugins instances on which the package depends.
      *
-     * @return string Package version.
+     * Package will throw dashboard errors if some of the return plugins are not
+     * active.
+     *
+     * @return array<\Cvy\helpers\inc\plugins\Plugin>
      */
-    abstract public function get_version() : string;
+    abstract protected function get_dependable_plugins() : array;
 
     /**
      * Getter for the package slug.
@@ -161,16 +182,16 @@ abstract class Package
      *
      * @return string Package root(main) file path.
      */
-    abstract protected function get_root_file() : string;
+    abstract protected function get_main_file_path() : string;
 
     /**
      * Getter for the package root directory.
      *
      * @return string Package root directory.
      */
-    public function get_root_dir() : string
+    public function get_root_dir_path() : string
     {
-        return dirname( $this->get_root_file() ) . '/';
+        return dirname( $this->get_main_file_path() ) . '/';
     }
 
     /**
@@ -181,9 +202,9 @@ abstract class Package
      *
      * @return string Package templates directory.
      */
-    public function get_templates_dir() : string
+    public function get_templates_dir_path() : string
     {
-        return $this->get_root_dir() . 'templates/';
+        return $this->get_root_dir_path() . 'templates/';
     }
 
     /**
@@ -202,8 +223,16 @@ abstract class Package
      */
     public function add_dashboard_error( string $error_message ) : void
     {
-        \Cvy\helpers\inc\dashboard\Dashboard::get_instance()->add_error( $error_message );
+        Dashboard::get_instance()->add_error( $this->prepare_dashboard_error_message( $error_message ) );
     }
+
+    /**
+     * Customizes error message.
+     *
+     * @param string $error_message Initial error message.
+     * @return string Customized error message.
+     */
+    abstract public function prepare_dashboard_error_message( string $error_message ) : string;
 
     public function get_db_data_item( string $name = '', $default_value = null )
     {

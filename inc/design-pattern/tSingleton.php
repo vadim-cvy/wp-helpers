@@ -17,7 +17,7 @@ trait tSingleton
     protected static $instances = [];
 
     /**
-     * Instance creator.
+     * Instance getter.
      *
      * @return object An instance of the called class.
      */
@@ -27,10 +27,20 @@ trait tSingleton
 
         if ( ! isset( static::$instances[ $class ] ) )
         {
-            static::$instances[ $class ] = new static();
+            static::$instances[ $class ] = static::create_instance();
         }
 
         return static::$instances[ $class ];
+    }
+
+    /**
+     * Creates an instance of the called class.
+     *
+     * @return object Instance of the called class.
+     */
+    protected static function create_instance()
+    {
+        return new static();
     }
 
     protected function __construct() {}

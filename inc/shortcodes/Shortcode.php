@@ -2,8 +2,12 @@
 
 namespace Cvy\helpers\inc\shortcodes;
 
+use \Exception;
+
 use \Cvy\helpers\inc\WP_Hooks;
 use \Cvy\helpers\inc\design_pattern\tSingleton;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 abstract class Shortcode
 {
@@ -40,4 +44,31 @@ abstract class Shortcode
     }
 
     abstract protected function render( array $attributes, string $content ) : void;
+
+    /**
+     * Checks if current post contains this shortcode.
+     *
+     * @return boolean True if curent post contains this shortcode, false otherwise.
+     */
+    public function appears_in_current_post() : bool
+    {
+        if ( ! is_singular() )
+        {
+            throw new Exception( 'Can\'t determine current page ID' );
+        }
+
+        return $this->appears_in_post( get_the_ID() );
+    }
+
+    /**
+     * Checks if post contains this shortcode.
+     *
+     * @return boolean True if post contains this shortcode, false otherwise.
+     */
+    public function appears_in_post( int $post_id ) : bool
+    {
+        $post_content = get_post_field( 'post_content', $post_id );
+
+        return has_shortcode( $post_content, $this->get_slug() );
+    }
 }

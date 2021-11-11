@@ -2,7 +2,7 @@
 
 namespace Cvy\helpers\inc\package;
 
-use \Cvy\helpers\inc\Plugins;
+use \Cvy\helpers\inc\plugins\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * How to use:
  *
- * My_Awesome_Plugin extends \Cvy\helpers\inc\package\Plugin_Package
+ * My_Awesome_Plugin extends Plugin_Package
  * {
  *      // Your code goes here
  * }
@@ -21,65 +21,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 abstract class Plugin_Package extends Package
 {
     /**
-     * Checks if the package is allowed to run.
+     * Returns plugin instance to which the package is connected.
      *
-     * @return boolean True if package is allowed to run false otherwise.
+     * @return Plugin
      */
-    protected function can_run() : bool
+    public function get_plugin_object() : Plugin
     {
-        return $this->is_active();
+        static $plugin_object = null;
+
+        if ( ! $plugin_object )
+        {
+            $plugin_object = new Plugin(
+                basename( $this->get_root_dir_path() ) . '/' .
+                basename( $this->get_main_file_path() )
+            );
+        }
+
+        return $plugin_object;
     }
-
-    /**
-     * Wrapper for get_plugin_data().
-     *
-     * @return array<string> Plugin data.
-     */
-    public function get_plugin_data() : array
-    {
-        return get_plugin_data( $this->get_root_file() );
-    }
-
-    /**
-     * Package version.
-     *
-     * @return string Package version.
-     */
-    public function get_version() : string
-    {
-        return $this->get_plugin_data()['Version'];
-    }
-
-    /**
-     * Getter for plugin name.
-     *
-     * @return string Plugin name.
-     */
-    public function get_name() : string
-    {
-        return $this->get_plugin_data()['Name'];
-    }
-
-    /**
-     * Checks if plugin is active.
-     *
-     * @return boolean True if plugin is active, false otherwise.
-     */
-    protected function is_active() : bool
-    {
-        $plugin =
-            basename( $this->get_root_dir() ) . '/' .
-            basename( $this->get_root_file() );
-
-        return \Cvy\helpers\inc\Plugins::is_active( $plugin );
-    }
-
-    /**
-     * Getter for the plugin root(main) file path.
-     *
-     * @return string Plugin root(main) file path.
-     */
-    abstract protected function get_root_file() : string;
 
     /**
      * Returns URL of the passed dir.
@@ -89,23 +48,29 @@ abstract class Plugin_Package extends Package
      */
     public function get_dir_url( string $dir_path ) : string
     {
-        return Plugins::get_dir_url( $dir_path );
+        $dir_path = trailingslashit( $dir_path );
+
+        /**
+         * plugin_dir_url() removes last part from the path. We don't want target
+         * dir name to be removed from the path. So we need to add something (a dot)
+         * which will be removed instead.
+         */
+        $dir_path .= '.';
+
+        return plugin_dir_url( $dir_path );
     }
 
     /**
-     * Adds dashboard error notice.
+     * Customizes error message.
      *
-     * @param string $error_message Notice message.
-     * @return void
+     * @param string $error_message Initial error message.
+     * @return string Customized error message.
      */
-    public function add_dashboard_error( string $error_message ) : void
+    public function prepare_dashboard_error_message( string $error_message ) : string
     {
-        $error_message =
-            '<strong>' .
-                '"' . $this->get_name() . '" Plugin Error:' .
+        return '<strong>' .
+                '"' . $this->get_plugin_object()->get_name() . '" Plugin Error:' .
             '</strong> ' .
             $error_message;
-
-        parent::add_dashboard_error( $error_message );
     }
 }

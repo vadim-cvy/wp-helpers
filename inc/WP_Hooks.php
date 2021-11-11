@@ -25,7 +25,7 @@ class WP_Hooks
         int $args = 99
     ) : void
     {
-        if ( did_action( $action_name ) )
+        if ( static::did_action( $action_name, $order ) )
         {
             throw new \Exception( 'Can\'t handle add_action()! Action "' . $action_name . '" has already fired.' );
         }
@@ -49,11 +49,26 @@ class WP_Hooks
         int $args = 99
     ) : void
     {
-        if ( did_action( $filter_name ) )
+        if ( static::did_action( $filter_name, $order ) )
         {
             throw new \Exception( 'Can\'t handle add_filter()! Filter "' . $filter_name . '" has already fired.' );
         }
 
         add_filter( $filter_name, $callback, $order, $args );
+    }
+
+    /**
+     * Checks if action/filter has already fired taking into account the order number.
+     *
+     * @param string $action_name Action/filter name.
+     * @param integer $order Order of the action (number of the itteration).
+     * @return bool True if action hasn't fired or current order number is less than $order arg,
+     *              false otherwise.
+     */
+    protected static function did_action( string $action_name, int $order = 10 ) : bool
+    {
+        global $wp_actions;
+
+        return did_action( $action_name ) && $wp_actions[ $action_name ] >= $order;
     }
 }
