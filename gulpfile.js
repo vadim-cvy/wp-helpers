@@ -19,9 +19,9 @@ const srcPath   = './assets/src/';
 const buildPath = './assets/build/';
 
 
-function compileCss( cb )
+function compileCss()
 {
-  gulp.src( srcPath + 'scss/*.scss' )
+  return gulp.src( srcPath + 'scss/*.scss' )
     .pipe(sass({
       outputStyle: 'compressed'
     }))
@@ -38,19 +38,15 @@ function compileCss( cb )
     ]}))
     .pipe(gulp.dest( buildPath + 'css' )
   );
-
-  cb();
 }
 
-function compileJs( cb )
+function compileJs()
 {
   return gulp.src( srcPath + 'js/**' )
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest( buildPath + 'js' ));
-
-  cb();
 }
 
 gulp.task( 'watch', function()
