@@ -2,7 +2,7 @@
 
 namespace JMCG\inc\framework\posts\fields\acf\field\settings;
 
-use \JMCG\inc\framework\design_pattern\tSingleton;
+use \JMCG\inc\framework\design_patterns\tSingleton;
 
 use \JMCG\inc\framework\hooks\Hooks;
 

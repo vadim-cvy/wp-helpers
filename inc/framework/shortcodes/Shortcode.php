@@ -5,7 +5,7 @@ namespace JMCG\inc\framework\shortcodes;
 use \Exception;
 
 use \JMCG\inc\framework\hooks\Hooks;
-use \JMCG\inc\framework\design_pattern\tSingleton;
+use \JMCG\inc\framework\design_patterns\tSingleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 

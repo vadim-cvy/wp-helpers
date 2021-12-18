@@ -2,7 +2,7 @@
 
 namespace JMCG\inc\framework\template_controllers;
 
-use \JMCG\inc\framework\design_pattern\tSingleton;
+use \JMCG\inc\framework\design_patterns\tSingleton;
 use \JMCG\inc\framework\package\filesystem\Package_Dir;
 use \JMCG\inc\framework\hooks\Hooks;
 

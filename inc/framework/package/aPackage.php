@@ -4,7 +4,7 @@ namespace JMCG\inc\framework\package;
 
 use \Exception;
 
-use \JMCG\inc\framework\design_pattern\tInitable;
+use \JMCG\inc\framework\design_patterns\tInitable;
 
 use \JMCG\inc\framework\pluggable\Pluggable;
 use \JMCG\inc\framework\pluggable\Pluggable_Error;
